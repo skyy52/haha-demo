@@ -65,6 +65,7 @@ public class CoreService {
             // 接收用户发送的文本消息内容
             String content = requestMap.get("Content");
 
+            System.out.println(content);
             // 创建图文消息
             NewsMessage newsMessage = new NewsMessage();
             newsMessage.setToUserName(fromUserName);
