@@ -1,5 +1,6 @@
 package com.qfjy.project.weixin.service;
 
+import com.qfjy.project.weixin.api.accessToken.AccessTokenRedis;
 import com.qfjy.project.weixin.api.hitokoto.HitokotoUtil;
 import com.qfjy.project.weixin.api.tuling.TulingUtil;
 import com.qfjy.project.weixin.bean.resp.Article;
@@ -22,6 +23,8 @@ public class CoreService {
     private TulingUtil tulingUtil;//机器人
 	@Autowired
 	private HitokotoUtil hitokotoUtil;//一言
+    @Autowired
+    private AccessTokenRedis accessTokenRedis;
 
     /**
      * 处理微信发来的请求
@@ -78,7 +81,8 @@ public class CoreService {
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
                 //respContent = "您发送的是文本消息！";
                 respContent = tulingUtil.sendMessage(content);
-				System.out.println(respContent);
+                accessTokenRedis.getAccessToken();
+                System.out.println(respContent);
             }
             // 图片消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {

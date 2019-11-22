@@ -10,6 +10,19 @@ spring:
   mvc:
     static-path-pattern: /static/**
     #数据源连接配置
+    # redis config
+  redis:
+    host: 192.168.226.130
+    port: 6379
+    password: redis
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 500
+        min-idle: 0
+    lettuce:
+      shutdown-timeout: 0
   datasource:
     name: test
     type: com.alibaba.druid.pool.DruidDataSource
